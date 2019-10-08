@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NiPrices</string>
+    <string name="exit_title">Exit application?</string>
+    <string name="exit_message">If you want to leave application,\\nplease click yes</string>
+    <string name="exit_yes">Yes</string>
+    <string name="exit_no">No</string>
+</resources>
