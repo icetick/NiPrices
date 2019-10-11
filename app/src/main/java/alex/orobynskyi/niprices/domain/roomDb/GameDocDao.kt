@@ -1,23 +1,21 @@
 package alex.orobynskyi.niprices.domain.roomDb
 
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
+import io.reactivex.Flowable
 
 @Dao
 interface GameDocDao {
     @Query("SELECT * FROM gamedoc")
-    fun getAll(): List<GameDoc>
+    fun getAll(): Flowable<List<GameDoc>>
 
-    @Query("SELECT * FROM gamedoc WHERE uid IN (:gameDocIds)")
-    fun loadAllByIds(gameDocIds: IntArray): List<GameDoc>
+    @Query("SELECT * FROM gamedoc WHERE fs_id IN (:gameDocIds)")
+    fun loadAllByIds(gameDocIds: IntArray): Flowable<List<GameDoc>>
 
     @Query("SELECT * FROM gamedoc WHERE title LIKE :title")
-    fun findByTitle(title: String): GameDoc
+    fun findByTitle(title: String): Flowable<GameDoc>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(games: List<GameDoc>)
 
     @Delete

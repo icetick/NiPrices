@@ -7,18 +7,16 @@ import alex.orobynskyi.niprices.domain.roomDb.AppDatabase
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 
 @Module
 class DbModule {
     @Provides
-    @Named("dbservice")
     fun provideDbRepository(database: AppDatabase): DbRepository {
         return EuDbRepository(database)
     }
 
     @Provides
-    fun provideApplicationDb(context: App): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, "niprices-db").build()
+    fun provideApplicationDb(): AppDatabase {
+        return Room.databaseBuilder(App.getInstance(), AppDatabase::class.java, "niprices-db").build()
     }
 }

@@ -2,6 +2,7 @@ package alex.orobynskyi.niprices.domain.repository
 
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.roomDb.AppDatabase
+import io.reactivex.Flowable
 
 class EuDbRepository(val database: AppDatabase) : DbRepository {
     override fun saveGames(games: List<GameDoc>) {
@@ -10,5 +11,5 @@ class EuDbRepository(val database: AppDatabase) : DbRepository {
         }
     }
 
-    override fun getGames(): List<GameDoc>? = database.gamedocsDao().getAll()
+    override fun getGames(): Flowable<List<GameDoc>>? = database.gamedocsDao().getAll()
 }

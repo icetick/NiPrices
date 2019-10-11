@@ -19,7 +19,7 @@ import javax.inject.Named
 @Module
 class ApiModule {
     @Provides
-    internal fun provideServerCommunicator(apiRepository: ApiRepository, @Named("dbservice") repository: DbRepository): EshopInteractor {
+    internal fun provideServerCommunicator(apiRepository: ApiRepository, repository: DbRepository): EshopInteractor {
         return EshopInteractor(apiRepository, repository)
     }
 

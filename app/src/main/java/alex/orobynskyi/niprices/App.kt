@@ -13,8 +13,8 @@ class App: Application(), HasActivityInjector {
     override fun activityInjector(): DispatchingAndroidInjector<Activity> = dispatchingAndroidInjector
 
     companion object {
-        private var instance: App? = null
-        @Synchronized fun getInstance(): App? = instance
+        private lateinit var instance: App
+        @Synchronized fun getInstance(): App = instance
     }
 
     override fun onCreate() {

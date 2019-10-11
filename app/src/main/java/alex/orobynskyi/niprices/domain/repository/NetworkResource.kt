@@ -17,15 +17,19 @@ constructor() {
         val source: Flowable<Resource<R>>?
         if (shouldFetch()) {
             source = createCall()
-                .doOnSubscribe { Resource.loading(it) }
-                .doOnNext { this.saveNetworkCallResult(it) }
+                .doOnSubscribe {
+                    Resource.loading(it) }
+                .doOnNext {
+                    this.saveNetworkCallResult(it)
+                }
                 .flatMap { apiResponse ->
                     loadFromDb()?.toObservable()
                         ?.map<Resource<R>> {
                             Resource.success(apiResponse)
                         } ?: Observable.just(Resource.success(apiResponse))
                 }
-                .doOnError { this.onFetchFailed(it) }
+                .doOnError {
+                    this.onFetchFailed(it) }
                 .onErrorResumeNext { t: Throwable ->
                     return@onErrorResumeNext loadFromDb()
                         ?.toObservable()

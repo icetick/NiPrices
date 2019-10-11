@@ -1,6 +1,6 @@
 package alex.orobynskyi.niprices.presentation.store.viewModel
 
-import alex.orobynskyi.niprices.domain.models.games.Doc
+import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
 import alex.orobynskyi.niprices.networking.EshopInteractor
 import alex.orobynskyi.niprices.presentation.base.BaseViewModel
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(var eshopInteractor: EshopInteractor) : BaseViewModel() {
     private var eupostsDisposable: Disposable? = null
-    var euGames: MutableLiveData<List<Doc>> = MutableLiveData()
+    var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
     var loading: MutableLiveData<Boolean> = MutableLiveData(false)
 
     override fun onCreated() {
