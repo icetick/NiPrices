@@ -1,5 +1,5 @@
 package alex.orobynskyi.niprices.di
-import alex.orobynskyi.niprices.presentation.viewModel.MainViewModel
+import alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
@@ -12,7 +12,7 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey( MainViewModel::class )
     // Bind my View Model here
-    abstract fun bindMainViewModel( mainViewModel: MainViewModel ): ViewModel
+    abstract fun bindMainViewModel( mainViewModel: MainViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory):

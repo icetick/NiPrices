@@ -1,9 +1,9 @@
-package alex.orobynskyi.niprices.presentation.view
+package alex.orobynskyi.niprices.presentation.store.view
 
 import alex.orobynskyi.niprices.R
 import alex.orobynskyi.niprices.databinding.ActivityMainBinding
 import alex.orobynskyi.niprices.presentation.base.BaseActivity
-import alex.orobynskyi.niprices.presentation.viewModel.MainViewModel
+import alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main.*
 

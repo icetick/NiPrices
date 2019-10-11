@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="@dimen/margin_8"
+    android:layout_margin="@dimen/margin_8"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/game_IV"
+            android:layout_width="@dimen/image_medium_dp"
+            android:layout_height="@dimen/image_medium_dp"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:contentDescription="@string/game_icon"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            tools:srcCompat="@drawable/ic_switch" />
+
+        <TextView
+            android:id="@+id/name_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_toStartOf="@+id/price_TV"
+            android:layout_toEndOf="@+id/game_IV"
+            android:textSize="@dimen/textsize_18"
+            android:textStyle="bold"
+            tools:text="Super game" />
+
+        <TextView
+            android:id="@+id/price_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginEnd="@dimen/margin_16"
+
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            tools:text="16.1$" />
+
+        <TextView
+            android:id="@+id/description_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_TV"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:lines="5"
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:textSize="@dimen/textsize_16"
+            android:layout_toEndOf="@+id/game_IV"
+            tools:text="@string/lorem_ipsum_big" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

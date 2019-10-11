@@ -1,4 +1,4 @@
-package alex.orobynskyi.niprices.presentation.viewModel
+package alex.orobynskyi.niprices.presentation.store.viewModel
 
 import alex.orobynskyi.niprices.domain.models.games.Doc
 import alex.orobynskyi.niprices.domain.repository.Status
@@ -19,14 +19,13 @@ class MainViewModel @Inject constructor(var eshopInteractor: EshopInteractor) : 
     }
 
     fun loadAllEuPosts() {
-        eupostsDisposable = eshopInteractor.getEuGameData()?.subscribe({ resource ->
+        eupostsDisposable = eshopInteractor.getEuGameData(true)?.subscribe({ resource ->
             when (resource.status) {
                 Status.LOADING -> {
                     loading.value = true
                 }
                 Status.SUCCESS -> {
-                    euGames.value = resource.data?.response?.docs
-                    loading.postValue(false)
+                    loading.value = false
                 }
                 Status.ERROR -> {
                     loading.value = false

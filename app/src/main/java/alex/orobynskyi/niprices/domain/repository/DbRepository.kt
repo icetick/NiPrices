@@ -1,8 +1,8 @@
 package alex.orobynskyi.niprices.domain.repository
 
-import alex.orobynskyi.niprices.domain.models.games.CommonResponse
-import io.reactivex.Flowable
+import alex.orobynskyi.niprices.domain.models.games.GameDoc
 
 interface DbRepository {
-    fun getGames(): Flowable<CommonResponse>?
+    fun getGames(): List<GameDoc>?
+    fun saveGames(games: List<GameDoc>)
 }

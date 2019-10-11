@@ -1,5 +1,5 @@
 package alex.orobynskyi.niprices.di
-import alex.orobynskyi.niprices.presentation.viewModel.MainViewModel
+import alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel
 import dagger.Component
 
 @Component( modules = [ViewModelModule::class])

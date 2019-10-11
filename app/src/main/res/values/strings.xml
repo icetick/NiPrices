@@ -4,4 +4,23 @@
     <string name="exit_message">If you want to leave application,\\nplease click yes</string>
     <string name="exit_yes">Yes</string>
     <string name="exit_no">No</string>
+    <string name="game_icon">Game icon</string>
+    <string name="lorem_ipsum_big"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim
+        iam stirpis bonum quaeret, sed animalis. Sine ea igitur iucunde negat posse se vivere?
+        Quod autem ratione actum est, id officium appellamus. Poterat autem inpune;
+        <mark>Duo Reges: constructio interrete.</mark> <i>Est, ut dicis, inquam.</i> <mark>
+            Quis enim redargueret?</mark> Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum. </p>
+        <p>Ubi ut eam caperet aut quando? Quae cum dixisset, finem ille.
+            Quod cum accidisset ut alter alterum necopinato videremus, surrexit statim.
+            Cur iustitia laudatur? <b>Vide, quantum, inquam, fallare, Torquate.</b> Cur igitur easdem res, inquam,
+            Peripateticis dicentibus verbum nullum est, quod non intellegatur? Putabam equidem satis, inquit, me dixisse.
+            Roges enim Aristonem, bonane ei videantur haec: vacuitas doloris, divitiae, valitudo;
+            An ea, quae per vinitorem antea consequebatur, per se ipsa curabit? </p>
+        <p><i>Quam nemo umquam voluptatem appellavit, appellat;
+        </i> Sed ad bona praeterita redeamus. Nam Pyrrho, Aristo, Erillus iam diu abiecti.
+            In his igitur partibus duabus nihil erat, quod Zeno commutare gestiret. <i>Tum ille: Ain tandem?</i>
+            Quamquam in hac divisione rem ipsam prorsus probo, elegantiam desidero. Habes, inquam,
+            Cato, formam eorum, de quibus loquor, philosophorum. </p>
+
+</string>
 </resources>

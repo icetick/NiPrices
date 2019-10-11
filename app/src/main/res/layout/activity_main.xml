@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="alex.orobynskyi.niprices.presentation.viewModel.MainViewModel" />
+            type="alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel" />
         <variable
             name="actionListener"
             type="alex.orobynskyi.niprices.presentation.base.ActionListener" />
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorPrimaryLight"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.MainActivity">
+        tools:context=".presentation.store.view.MainActivity">
 
         <LinearLayout
             android:layout_width="wrap_content"

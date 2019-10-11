@@ -1,6 +1,8 @@
 package alex.orobynskyi.niprices.networking
 
 import alex.orobynskyi.niprices.domain.models.games.CommonResponse
+import alex.orobynskyi.niprices.domain.models.games.Response
+import alex.orobynskyi.niprices.domain.models.games.ResponseHeader
 import alex.orobynskyi.niprices.domain.repository.ApiRepository
 import alex.orobynskyi.niprices.domain.repository.DbRepository
 import alex.orobynskyi.niprices.domain.repository.NetworkResource
@@ -12,16 +14,21 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class EshopInteractor @Inject constructor(var apiRepository: ApiRepository, var dbRepository: DbRepository? = null) {
-    fun getEuGameData(): Observable<Resource<CommonResponse>>? {
+    fun getEuGameData(shouldFetch: Boolean): Observable<Resource<CommonResponse>>? {
         return object: NetworkResource<CommonResponse>() {
             override fun saveNetworkCallResult(item: CommonResponse) {
-
+                dbRepository?.saveGames(item.response.docs)
             }
             override fun loadFromDb(): Flowable<CommonResponse>? {
-                return null
+                val games = dbRepository?.getGames()
+                return if(games!=null && games.isNotEmpty()) {
+                    Flowable.just(CommonResponse(Response(games, games.size, 0), ResponseHeader.empty()))
+                } else {
+                    null
+                }
             }
             override fun createCall(): Observable<CommonResponse> = apiRepository.getGames().toObservable()
-            override fun shouldFetch(): Boolean = true
+            override fun shouldFetch(): Boolean = shouldFetch
 
         }.asMainThreadObservable()
     }
