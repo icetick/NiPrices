@@ -4,6 +4,7 @@ import alex.orobynskyi.niprices.R
 import alex.orobynskyi.niprices.databinding.ActivityMainBinding
 import alex.orobynskyi.niprices.presentation.base.BaseActivity
 import alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel
+import android.content.Intent
 import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,6 +21,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val animation = AnimationUtils.loadAnimation(this,
             R.anim.fade_in_out_anim
         )
+        viewModel.loading.observeForever {
+            if(it) {
+                startActivity(Intent(this, ListActivity::class.java))
+            }
+        }
         logoIV.startAnimation(animation)
     }
 
