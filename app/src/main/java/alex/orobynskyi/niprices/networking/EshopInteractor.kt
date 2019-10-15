@@ -7,6 +7,7 @@ import alex.orobynskyi.niprices.domain.repository.ApiRepository
 import alex.orobynskyi.niprices.domain.repository.DbRepository
 import alex.orobynskyi.niprices.domain.repository.NetworkResource
 import alex.orobynskyi.niprices.domain.repository.Resource
+import alex.orobynskyi.niprices.utils.AppUtils
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,6 +34,10 @@ class EshopInteractor @Inject constructor(var apiRepository: ApiRepository, var 
             override fun shouldFetch(): Boolean = shouldFetch
 
         }.asMainThreadObservable()
+    }
+
+    fun searchGamesByKeyword(query: String) = dbRepository.searchGame(query)?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())?.doOnNext {
+        AppUtils.logE(it.first().toString())
     }
 
     fun getSingleEuGameData() = apiRepository.getGames().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

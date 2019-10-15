@@ -12,8 +12,8 @@ interface GameDocDao {
     @Query("SELECT * FROM gamedoc WHERE fs_id IN (:gameDocIds)")
     fun loadAllByIds(gameDocIds: IntArray): Flowable<List<GameDoc>>
 
-    @Query("SELECT * FROM gamedoc WHERE title LIKE :title")
-    fun findByTitle(title: String): Flowable<GameDoc>
+    @Query("SELECT * FROM gamedoc WHERE title LIKE '%' || :title || '%' OR excerpt LIKE '%' || :title || '%' ")
+    fun findByTitle(title: String): Flowable<List<GameDoc>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(games: List<GameDoc>)

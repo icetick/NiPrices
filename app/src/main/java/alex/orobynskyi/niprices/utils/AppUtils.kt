@@ -3,13 +3,14 @@ package alex.orobynskyi.niprices.utils
 import alex.orobynskyi.niprices.BuildConfig
 import android.util.Log
 
+fun String.addSchema(): String {
+    this.removePrefix("//")
 
-fun Any.logE(message: String?) {
-    message?.let {msg ->
-        if(BuildConfig.DEBUG) {
-            Log.e("NIPRICES", msg)
-        }
+    if (!this.matches(Regex("^[a-zA-Z]+://")))
+    {
+        return "http://$this"
     }
+    return this
 }
 
 class AppUtils {
@@ -31,6 +32,14 @@ class AppUtils {
 
             }
             return sb.toString()
+        }
+
+        fun logE(message: String?) {
+            message?.let { msg ->
+                if (BuildConfig.DEBUG) {
+                    Log.e("NIPRICES", msg)
+                }
+            }
         }
     }
 }

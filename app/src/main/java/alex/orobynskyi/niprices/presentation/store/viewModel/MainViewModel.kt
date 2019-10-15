@@ -4,7 +4,7 @@ import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
 import alex.orobynskyi.niprices.networking.EshopInteractor
 import alex.orobynskyi.niprices.presentation.base.BaseViewModel
-import alex.orobynskyi.niprices.utils.logE
+import alex.orobynskyi.niprices.utils.AppUtils
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(var eshopInteractor: EshopInteractor) : 
         })
 
         euGames.observeForever {
-            it.forEach { logE(it.toString()) }
+            it.forEach { AppUtils.logE(it.toString()) }
         }
     }
 

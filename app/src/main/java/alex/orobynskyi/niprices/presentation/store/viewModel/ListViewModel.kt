@@ -5,14 +5,31 @@ import alex.orobynskyi.niprices.domain.repository.Status
 import alex.orobynskyi.niprices.networking.EshopInteractor
 import alex.orobynskyi.niprices.presentation.base.ActionListener
 import alex.orobynskyi.niprices.presentation.base.BaseViewModel
-import alex.orobynskyi.niprices.utils.logE
+import alex.orobynskyi.niprices.utils.AppUtils
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): BaseViewModel(), ActionListener<GameDoc> {
     private var eupostsDisposable: Disposable? = null
     var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
+
+    private var searchSubject: PublishSubject<String>? = null
+    var searchSubscription: DisposableObserver<List<GameDoc>>? = null
+    val searchQueryTextListener: SearchView.OnQueryTextListener = object: SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+            return false
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+            searchGame(newText)
+            return false
+        }
+    }
 
     override fun onCreated() {
         loadAllEuPosts()
@@ -37,11 +54,40 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): B
         })
 
         euGames.observeForever {
-            it.forEach { logE(it.toString()) }
+            it.forEach { AppUtils.logE(it.toString()) }
         }
+    }
+
+    fun searchGame(keyword: String) {
+        if(searchSubject==null) {
+            searchSubject = PublishSubject.create()
+            searchSubscription = searchSubject?.debounce(300, TimeUnit.MILLISECONDS)
+                ?.distinctUntilChanged()
+                ?.switchMap { searchValue ->
+                    eshopInteractor.searchGamesByKeyword(searchValue)?.toObservable()
+                }
+                ?.subscribeWith(object : DisposableObserver<List<GameDoc>>() {
+                    override fun onComplete() {
+                    }
+
+                    override fun onNext(t: List<GameDoc>) {
+                        euGames.postValue(t)
+                    }
+
+                    override fun onError(e: Throwable) {
+                    }
+                })
+        }
+
+        searchSubject?.onNext(keyword)
     }
 
     override fun onCleared() {
         super.onCleared()
+    }
+
+    fun removeSearchSubscriptions() {
+        searchSubject = null
+        searchSubscription?.dispose()
     }
 }

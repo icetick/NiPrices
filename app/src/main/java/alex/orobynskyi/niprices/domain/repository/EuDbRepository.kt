@@ -5,6 +5,7 @@ import alex.orobynskyi.niprices.domain.roomDb.AppDatabase
 import io.reactivex.Flowable
 
 class EuDbRepository(val database: AppDatabase) : DbRepository {
+
     override fun saveGames(games: List<GameDoc>) {
         games.isNotEmpty().let {
             database.gamedocsDao().insertAll(games)
@@ -12,4 +13,8 @@ class EuDbRepository(val database: AppDatabase) : DbRepository {
     }
 
     override fun getGames(): Flowable<List<GameDoc>>? = database.gamedocsDao().getAll()
+
+    override fun searchGame(keyWord: String): Flowable<List<GameDoc>>? {
+        return database.gamedocsDao().findByTitle(keyWord)
+    }
 }

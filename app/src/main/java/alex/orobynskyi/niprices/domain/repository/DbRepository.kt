@@ -6,4 +6,5 @@ import io.reactivex.Flowable
 interface DbRepository {
     fun getGames(): Flowable<List<GameDoc>>?
     fun saveGames(games: List<GameDoc>)
+    fun searchGame(keyWord: String): Flowable<List<GameDoc>>?
 }

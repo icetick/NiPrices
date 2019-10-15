@@ -3,7 +3,6 @@ package alex.orobynskyi.niprices.utils
 import alex.orobynskyi.niprices.R
 import alex.orobynskyi.niprices.presentation.base.ActionListener
 import alex.orobynskyi.niprices.presentation.base.BindingRecyclerAdapter
-import android.graphics.drawable.Drawable
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -12,10 +11,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 
 @BindingAdapter("listItems", "callbackHandler", "listLayout")
 fun <T> setListItems(
@@ -34,20 +29,8 @@ fun <T> setListItems(
 
 @BindingAdapter("android:srcUrl")
 fun setImageSrcUrl(view: ImageView, url: String?) {
-    url?.removePrefix("//")
-
-    Glide.with(view).load(url).listener(object : RequestListener<Drawable> {
-        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-            //TODO handle error images while loading photo
-            return true
-        }
-
-        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-            //TODO use "resource" as the photo for your ImageView
-            return true
-        }
-
-    }).error(R.drawable.ic_switch).into(view)
+    val nextUrl = url?.addSchema()
+    Glide.with(view).load(nextUrl).error(R.drawable.ic_switch).into(view)
 }
 
 @BindingAdapter("disallowTouchEvent")
