@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
@@ -33,6 +34,7 @@
             android:paddingBottom="@dimen/margin_16"
             app:callbackHandler="@{viewModel}"
             app:listItems="@{viewModel.euGames}"
+            tools:listitem="@layout/item_game"
             app:listLayout="@{@layout/item_game}"/>
     </LinearLayout>
 </layout>

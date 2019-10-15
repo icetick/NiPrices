@@ -26,8 +26,10 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         def apiEndpoint = properties.getProperty("EUROPE_ENDPOINT", "")
+        def ukEshopEndpoint = properties.getProperty("UK_ESHOP_ENDPOINT", "")
 
         it.buildConfigField 'String', "EUROPE_ENDPOINT", apiEndpoint
+        it.buildConfigField 'String', "ESHOP_ENDPOINT_UK", ukEshopEndpoint
     }
     dataBinding {
         enabled = true

@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val animation = AnimationUtils.loadAnimation(this,
             R.anim.fade_in_out_anim
         )
-        viewModel.loading.observeForever {
+        viewModel.proceed.observeForever {
             if(it) {
                 startActivity(Intent(this, ListActivity::class.java))
             }

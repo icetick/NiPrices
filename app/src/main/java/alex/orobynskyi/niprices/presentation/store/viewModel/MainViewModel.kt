@@ -13,6 +13,7 @@ class MainViewModel @Inject constructor(var eshopInteractor: EshopInteractor) : 
     private var eupostsDisposable: Disposable? = null
     var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
     var loading: MutableLiveData<Boolean> = MutableLiveData(true)
+    val proceed: MutableLiveData<Boolean> = MutableLiveData(false)
 
     override fun onCreated() {
 
@@ -26,6 +27,7 @@ class MainViewModel @Inject constructor(var eshopInteractor: EshopInteractor) : 
                 }
                 Status.SUCCESS -> {
                     loading.value = false
+                    proceed.value = true
                 }
                 Status.ERROR -> {
                     loading.value = false

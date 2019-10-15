@@ -1,5 +1,6 @@
 package alex.orobynskyi.niprices.presentation.store.viewModel
 
+import alex.orobynskyi.niprices.BuildConfig
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
 import alex.orobynskyi.niprices.networking.EshopInteractor
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): BaseViewModel(), ActionListener<GameDoc> {
     private var eupostsDisposable: Disposable? = null
     var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
+    var chosenGameUrl: MutableLiveData<String> = MutableLiveData()
 
     private var searchSubject: PublishSubject<String>? = null
     var searchSubscription: DisposableObserver<List<GameDoc>>? = null
@@ -36,7 +38,7 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): B
     }
 
     override fun onClick(data: GameDoc) {
-
+        chosenGameUrl.postValue(BuildConfig.ESHOP_ENDPOINT_UK+data.url)
     }
 
     fun loadAllEuPosts() {

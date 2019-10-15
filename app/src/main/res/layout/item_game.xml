@@ -4,6 +4,9 @@
         <variable
             name="viewModel"
             type="alex.orobynskyi.niprices.domain.models.games.GameDoc" />
+        <variable
+            name="actionListener"
+            type="alex.orobynskyi.niprices.presentation.base.ActionListener" />
         <import type="android.view.View" />
         <import type="android.text.TextUtils"/>
     </data>
@@ -14,6 +17,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         app:cardCornerRadius="@dimen/margin_8"
         android:layout_margin="@dimen/margin_8"
+        android:onClick="@{()->actionListener.onClick(viewModel)}"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
