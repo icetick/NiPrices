@@ -2,14 +2,14 @@ package alex.orobynskyi.niprices.utils
 
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
-import kotlin.random.Random
+import java.util.*
 
 class AnimUtils {
     companion object {
         fun getRandomDuration(): Long {
             val minimumDuration: Long = 200
             val offset: Long = 300
-            return Random(offset).nextLong() + minimumDuration
+            return Random().nextInt(offset.toInt()) + minimumDuration
         }
 
         fun provideListScaleAnimation(): ScaleAnimation {
