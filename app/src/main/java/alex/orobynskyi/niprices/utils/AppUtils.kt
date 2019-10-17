@@ -6,8 +6,7 @@ import android.util.Log
 fun String.addSchema(): String {
     this.removePrefix("//")
 
-    if (!this.matches(Regex("^[a-zA-Z]+://")))
-    {
+    if (!this.matches(Regex("^[a-zA-Z]+://"))) {
         return "http://$this"
     }
     return this
@@ -16,20 +15,14 @@ fun String.addSchema(): String {
 class AppUtils {
     companion object {
         fun join(separator: String, input: List<String>?): String {
-
             if (input == null || input.size <= 0) return ""
-
             val sb = StringBuilder()
-
             for (i in input.indices) {
-
                 sb.append(input[i])
-
                 // if not the last item
                 if (i != input.size - 1) {
                     sb.append(separator)
                 }
-
             }
             return sb.toString()
         }

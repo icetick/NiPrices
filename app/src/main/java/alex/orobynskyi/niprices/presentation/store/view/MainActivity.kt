@@ -23,7 +23,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         )
         viewModel.proceed.observeForever {
             if(it) {
-                startActivity(Intent(this, ListActivity::class.java))
+                val mainIntent = Intent(this, ListActivity::class.java)
+                startActivity(mainIntent)
+                finish()
             }
         }
         logoIV.startAnimation(animation)

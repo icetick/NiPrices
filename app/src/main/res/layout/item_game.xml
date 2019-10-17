@@ -80,10 +80,11 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginEnd="@dimen/margin_16"
-                android:visibility="@{viewModel.price_lowest_f!=null &amp;&amp; viewModel.price_lowest_f!=0 ? View.GONE : View.VISIBLE}"
-                android:text='@{viewModel.price_lowest_f==null ? viewModel.price_lowest_f + "pounds" : ""}'
+                android:visibility="@{viewModel.price_lowest_f==null ? View.GONE : View.VISIBLE}"
+                android:text='@{viewModel.price_lowest_f!=null ? viewModel.price_lowest_f + "£" : ""}'
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_18"
                 android:textStyle="bold"
                 tools:text="16.1$" />
 

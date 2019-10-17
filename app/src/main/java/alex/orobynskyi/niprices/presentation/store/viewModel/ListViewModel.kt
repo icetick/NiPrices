@@ -63,7 +63,7 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): B
     fun searchGame(keyword: String) {
         if(searchSubject==null) {
             searchSubject = PublishSubject.create()
-            searchSubscription = searchSubject?.debounce(300, TimeUnit.MILLISECONDS)
+            searchSubscription = searchSubject?.debounce(500, TimeUnit.MILLISECONDS)
                 ?.distinctUntilChanged()
                 ?.switchMap { searchValue ->
                     eshopInteractor.searchGamesByKeyword(searchValue)?.toObservable()
