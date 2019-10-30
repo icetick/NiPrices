@@ -3,22 +3,27 @@ package alex.orobynskyi.niprices.presentation.store.viewModel
 import alex.orobynskyi.niprices.BuildConfig
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
+import alex.orobynskyi.niprices.networking.CurrencyService
 import alex.orobynskyi.niprices.networking.EshopInteractor
 import alex.orobynskyi.niprices.presentation.base.ActionListener
 import alex.orobynskyi.niprices.presentation.base.BaseViewModel
 import alex.orobynskyi.niprices.utils.AppUtils
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Named
 
-class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): BaseViewModel(), ActionListener<GameDoc> {
+class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @Named("currencyservice")var currencyApi: CurrencyService): BaseViewModel(), ActionListener<GameDoc> {
     private var eupostsDisposable: Disposable? = null
     var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
     var chosenGameUrl: MutableLiveData<String> = MutableLiveData()
+    var currencies: MutableLiveData<HashMap<String, Double>> = MutableLiveData(HashMap())
 
     private var searchSubject: PublishSubject<String>? = null
     var searchSubscription: DisposableObserver<List<GameDoc>>? = null
@@ -35,6 +40,13 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor): B
 
     override fun onCreated() {
         loadAllEuPosts()
+        loadCurrencies()
+    }
+
+    private fun loadCurrencies() {
+        currencyApi.getLatestCurrencyRates().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
+            currencies.value = it.rates
+        }, {})
     }
 
     override fun onClick(data: GameDoc) {

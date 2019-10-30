@@ -4,6 +4,7 @@ import alex.orobynskyi.niprices.BuildConfig
 import alex.orobynskyi.niprices.domain.repository.ApiRepository
 import alex.orobynskyi.niprices.domain.repository.DbRepository
 import alex.orobynskyi.niprices.domain.repository.EuApiRepository
+import alex.orobynskyi.niprices.networking.CurrencyService
 import alex.orobynskyi.niprices.networking.EshopInteractor
 import alex.orobynskyi.niprices.networking.EshopService
 import dagger.Module
@@ -38,6 +39,18 @@ class ApiModule {
     @Named("api")
     internal fun provideRetrofit(builder: Retrofit.Builder): Retrofit {
         return builder.baseUrl(BuildConfig.EUROPE_ENDPOINT).build()
+    }
+
+    @Provides
+    @Named("currencyservice")
+    internal fun provideCurrencyService(@Named("currapi") retrofit: Retrofit): CurrencyService {
+        return retrofit.create(CurrencyService::class.java)
+    }
+
+    @Provides
+    @Named("currapi")
+    internal fun provideCurrRetrofit(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl(BuildConfig.CURRENCY_API_ENDPOINT).build()
     }
 
     @Provides

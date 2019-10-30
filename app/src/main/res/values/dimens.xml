@@ -7,4 +7,5 @@
     <dimen name="margin_8">8dp</dimen>
     <dimen name="textsize_16">16sp</dimen>
     <dimen name="image_medium_dp">128dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
 </resources>

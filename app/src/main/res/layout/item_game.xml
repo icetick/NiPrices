@@ -73,16 +73,29 @@
                 android:textStyle="bold"
                 tools:text="Super company" />
 
+            <ImageView
+                android:id="@+id/country_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:visibility="@{viewModel.price_lowest_f==null ? View.GONE : View.VISIBLE}"
+                android:text='@{viewModel.price_lowest_f!=null ? viewModel.price_lowest_f + "£" : ""}'
+                tools:src="@drawable/ic_argentina"
+                />
+
             <TextView
                 android:id="@+id/price_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_2"
                 android:layout_marginEnd="@dimen/margin_16"
                 android:visibility="@{viewModel.price_lowest_f==null ? View.GONE : View.VISIBLE}"
                 android:text='@{viewModel.price_lowest_f!=null ? viewModel.price_lowest_f + "£" : ""}'
                 android:textAllCaps="true"
+                android:layout_below="@id/country_img"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/textsize_18"
                 android:textStyle="bold"

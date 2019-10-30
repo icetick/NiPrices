@@ -30,16 +30,15 @@ constructor() {
                 }
                 .doOnError {
                     this.onFetchFailed(it) }
-                .onErrorResumeNext { t: Throwable ->
+                .onErrorResumeNext { throwable: Throwable ->
                     return@onErrorResumeNext loadFromDb()
                         ?.toObservable()
                         ?.map { data ->
                             val apiResource: Resource<R>
-
-                            if (t is HttpException && t.code() >= 400 && t.code() < 500) {
-                                apiResource = Resource.error(t.message)
+                            if (throwable is HttpException && throwable.code() >= 400 && throwable.code() < 500) {
+                                apiResource = Resource.error(throwable.message)
                             } else {
-                                apiResource = Resource.error(t.message)
+                                apiResource = Resource.error(throwable.message)
                             }
 
                             apiResource

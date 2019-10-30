@@ -35,7 +35,7 @@ class BindingRecyclerAdapter<T : ViewDataBinding, S>(
     override fun onBindViewHolder(holder: DataBindingViewHolder<T, S>, position: Int) {
         holder.bind(BR.viewModel, items[position])
         actionListener?.let { holder.bindActionListener(BR.actionListener, it) }
-        setAnimation(holder.itemView, position);
+        setAnimation(holder.itemView, position)
     }
 
     override fun onViewDetachedFromWindow(holder: DataBindingViewHolder<T, S>) {

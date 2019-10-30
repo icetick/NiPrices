@@ -1,7 +1,5 @@
 package alex.orobynskyi.niprices.domain.repository
 
-
-
 data class Resource<R>(var status: Status, var data: R? = null, var errorMessage: String? = null) {
     companion object {
         fun <R> success(data: R): Resource<R> = Resource(Status.SUCCESS, data)
