@@ -16,6 +16,7 @@ class ListActivity: BaseActivity<ActivityListBinding, ListViewModel>() {
     override fun getLayoutID(): Int = R.layout.activity_list
 
     override fun beforeContentAppear() {
+
     }
 
     override fun afterContentAppear() {
@@ -30,10 +31,11 @@ class ListActivity: BaseActivity<ActivityListBinding, ListViewModel>() {
         })
         viewModel.currencies.observe(this, Observer {
             if(it.isNotEmpty()) {
+                val currencyKeys: List<String> = it.values.map { currency -> currency.currencyId + " - " + currency.currencyName }
                 val adapter = ArrayAdapter<String>(
                     this,
                     android.R.layout.simple_spinner_dropdown_item,
-                    it.keys.toTypedArray()
+                    currencyKeys.toTypedArray()
                 )
                 currency_spinner.adapter = adapter
                 currency_spinner.prompt = "Currency"

@@ -80,8 +80,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_8"
                 android:layout_marginEnd="@dimen/margin_16"
-                android:visibility="@{viewModel.price_lowest_f==null ? View.GONE : View.VISIBLE}"
-                android:text='@{viewModel.price_lowest_f!=null ? viewModel.price_lowest_f + "£" : ""}'
                 tools:src="@drawable/ic_argentina"
                 />
 
@@ -90,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_2"
+                android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginEnd="@dimen/margin_16"
                 android:visibility="@{viewModel.price_lowest_f==null ? View.GONE : View.VISIBLE}"
                 android:text='@{viewModel.price_lowest_f!=null ? viewModel.price_lowest_f + "£" : ""}'

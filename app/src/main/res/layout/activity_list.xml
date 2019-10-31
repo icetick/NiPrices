@@ -14,24 +14,36 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme">
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_view"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_16"
-                android:inputType="textPersonName"
-                android:hint="Type something to search" />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/currency_spinner"
-                android:layout_width="wrap_content"
-                android:layout_marginEnd="@dimen/margin_16"
-                tools:listitem="@android:layout/simple_spinner_item"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:hint="Type something to search"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
         </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/currency_spinner"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/margin_16"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginStart="@dimen/margin_16"
+            tools:listitem="@android:layout/simple_spinner_item"
+            android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

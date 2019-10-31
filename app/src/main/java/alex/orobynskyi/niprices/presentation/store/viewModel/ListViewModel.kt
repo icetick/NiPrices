@@ -1,6 +1,7 @@
 package alex.orobynskyi.niprices.presentation.store.viewModel
 
 import alex.orobynskyi.niprices.BuildConfig
+import alex.orobynskyi.niprices.domain.models.currency.Currency
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
 import alex.orobynskyi.niprices.networking.CurrencyService
@@ -11,6 +12,7 @@ import alex.orobynskyi.niprices.utils.AppUtils
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -23,10 +25,12 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
     private var eupostsDisposable: Disposable? = null
     var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
     var chosenGameUrl: MutableLiveData<String> = MutableLiveData()
-    var currencies: MutableLiveData<HashMap<String, Double>> = MutableLiveData(HashMap())
+    var currencies: MutableLiveData<HashMap<String, Currency>> = MutableLiveData()
+    val taskSubscription: CompositeDisposable = CompositeDisposable()
 
     private var searchSubject: PublishSubject<String>? = null
     var searchSubscription: DisposableObserver<List<GameDoc>>? = null
+
     val searchQueryTextListener: SearchView.OnQueryTextListener = object: SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String): Boolean {
             return false
@@ -44,9 +48,13 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
     }
 
     private fun loadCurrencies() {
-        currencyApi.getLatestCurrencyRates().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({
-            currencies.value = it.rates
-        }, {})
+        val currenciesDisposable = currencyApi.getCurrencyCountries()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe({
+                this.currencies.postValue(it.results)
+            }, {})
+        
+        taskSubscription.add(currenciesDisposable)
     }
 
     override fun onClick(data: GameDoc) {
@@ -98,6 +106,8 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
 
     override fun onCleared() {
         super.onCleared()
+        taskSubscription.dispose()
+        removeSearchSubscriptions()
     }
 
     fun removeSearchSubscriptions() {

@@ -28,11 +28,12 @@ android {
         def apiEndpoint = properties.getProperty("EUROPE_ENDPOINT", "")
         def ukEshopEndpoint = properties.getProperty("UK_ESHOP_ENDPOINT", "")
         def currencyExchangeEndpoint = properties.getProperty("CURRENCY_API_ENDPOINT", "")
+        def currencyExchangeKey = properties.getProperty("CURRENCY_API_KEY", "")
 
         it.buildConfigField 'String', "EUROPE_ENDPOINT", apiEndpoint
         it.buildConfigField 'String', "ESHOP_ENDPOINT_UK", ukEshopEndpoint
         it.buildConfigField 'String', "CURRENCY_API_ENDPOINT", currencyExchangeEndpoint
-
+        it.buildConfigField 'String', "CURRENCY_API_KEY", currencyExchangeKey
     }
     dataBinding {
         enabled = true
@@ -66,7 +67,7 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:4.9.0"
     implementation 'jp.wasabeef:glide-transformations:4.0.1'
-    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
 
     implementation "com.google.android.material:material:1.0.0"
     implementation "com.google.code.gson:gson:2.8.5"
@@ -74,7 +75,7 @@ dependencies {
 
     //rx
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
 
     implementation "com.google.dagger:dagger:2.23.2"
