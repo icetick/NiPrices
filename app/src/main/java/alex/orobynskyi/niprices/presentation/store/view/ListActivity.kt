@@ -6,15 +6,16 @@ import alex.orobynskyi.niprices.presentation.base.BaseActivity
 import alex.orobynskyi.niprices.presentation.store.viewModel.ListViewModel
 import android.content.Intent
 import android.net.Uri
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_list.*
 
 
-class ListActivity: BaseActivity<ActivityListBinding, ListViewModel>() {
+class ListActivity : BaseActivity<ActivityListBinding, ListViewModel>() {
     override val viewModel: ListViewModel by viewModel()
     override fun getLayoutID(): Int = R.layout.activity_list
-
     override fun beforeContentAppear() {
 
     }
@@ -30,8 +31,9 @@ class ListActivity: BaseActivity<ActivityListBinding, ListViewModel>() {
             startActivity(browserIntent)
         })
         viewModel.currencies.observe(this, Observer {
-            if(it.isNotEmpty()) {
-                val currencyKeys: List<String> = it.values.map { currency -> currency.currencyId + " - " + currency.currencyName }
+            if (it.isNotEmpty()) {
+                val currencyKeys: List<String> =
+                    it.values.map { currency -> currency.currencyId + " - " + currency.currencyName }
                 val adapter = ArrayAdapter<String>(
                     this,
                     android.R.layout.simple_spinner_dropdown_item,
@@ -39,14 +41,25 @@ class ListActivity: BaseActivity<ActivityListBinding, ListViewModel>() {
                 )
                 currency_spinner.adapter = adapter
                 currency_spinner.prompt = "Currency"
-                currency_spinner.setSelection(1)
+                currency_spinner.setSelection(0, false)
+                currency_spinner.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {}
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            viewModel.updateCurrency(currencyKeys[p2].split(" - ")[0])
+                        }
+                    }
             }
         })
     }
 
     override fun onReleaseResources() {
     }
-
 
 
 }

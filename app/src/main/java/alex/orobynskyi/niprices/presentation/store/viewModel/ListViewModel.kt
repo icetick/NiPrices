@@ -57,6 +57,13 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
         taskSubscription.add(currenciesDisposable)
     }
 
+    fun updateCurrency(index: String) {
+        val currencyRateDisposable = currencyApi.getYourCurrencyRate("GBP_"+index).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread()).subscribe({
+                it
+            }, {})
+    }
+
     override fun onClick(data: GameDoc) {
         chosenGameUrl.postValue(BuildConfig.ESHOP_ENDPOINT_UK+data.url)
     }
