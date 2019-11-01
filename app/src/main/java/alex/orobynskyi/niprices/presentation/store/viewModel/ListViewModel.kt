@@ -2,6 +2,7 @@ package alex.orobynskyi.niprices.presentation.store.viewModel
 
 import alex.orobynskyi.niprices.BuildConfig
 import alex.orobynskyi.niprices.domain.models.currency.Currency
+import alex.orobynskyi.niprices.domain.models.currency.Rate
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
 import alex.orobynskyi.niprices.networking.CurrencyService
@@ -27,6 +28,7 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
     var chosenGameUrl: MutableLiveData<String> = MutableLiveData()
     var currencies: MutableLiveData<HashMap<String, Currency>> = MutableLiveData()
     val taskSubscription: CompositeDisposable = CompositeDisposable()
+    val currentRate: MutableLiveData<Rate> = MutableLiveData()
 
     private var searchSubject: PublishSubject<String>? = null
     var searchSubscription: DisposableObserver<List<GameDoc>>? = null
@@ -45,6 +47,19 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
     override fun onCreated() {
         loadAllEuPosts()
         loadCurrencies()
+        subscribeRateChange()
+    }
+
+    private fun subscribeRateChange() {
+        currentRate.observeForever {
+            val rateChangedValues = euGames.value?.onEach {
+            }
+            euGames.postValue(rateChangedValues)
+        }
+    }
+
+    private fun convertValue(): Double {
+
     }
 
     private fun loadCurrencies() {
@@ -60,8 +75,10 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
     fun updateCurrency(index: String) {
         val currencyRateDisposable = currencyApi.getYourCurrencyRate("GBP_"+index).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()).subscribe({
-                it
+                currentRate.postValue(it.results.entries.iterator().next().value)
             }, {})
+
+        taskSubscription.add(currencyRateDisposable)
     }
 
     override fun onClick(data: GameDoc) {
