@@ -1,11 +1,10 @@
 package alex.orobynskyi.niprices.presentation.store.viewModel
 
 import alex.orobynskyi.niprices.BuildConfig
-import alex.orobynskyi.niprices.domain.models.currency.Currency
 import alex.orobynskyi.niprices.domain.models.currency.Rate
 import alex.orobynskyi.niprices.domain.models.games.GameDoc
 import alex.orobynskyi.niprices.domain.repository.Status
-import alex.orobynskyi.niprices.networking.CurrencyService
+import alex.orobynskyi.niprices.networking.CurrencyManager
 import alex.orobynskyi.niprices.networking.EshopInteractor
 import alex.orobynskyi.niprices.presentation.base.ActionListener
 import alex.orobynskyi.niprices.presentation.base.BaseViewModel
@@ -20,13 +19,11 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import javax.inject.Named
 
-class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @Named("currencyservice")var currencyApi: CurrencyService): BaseViewModel(), ActionListener<GameDoc> {
+class ListActivityVM @Inject constructor(var eshopInteractor: EshopInteractor, var currencyManager: CurrencyManager): BaseViewModel(), ActionListener<GameDoc> {
     private var eupostsDisposable: Disposable? = null
     var euGames: MutableLiveData<List<GameDoc>> = MutableLiveData()
     var chosenGameUrl: MutableLiveData<String> = MutableLiveData()
-    var currencies: MutableLiveData<HashMap<String, Currency>> = MutableLiveData()
     val taskSubscription: CompositeDisposable = CompositeDisposable()
     val currentRate: MutableLiveData<Rate> = MutableLiveData()
 
@@ -46,34 +43,25 @@ class ListViewModel @Inject constructor(var eshopInteractor: EshopInteractor, @N
 
     override fun onCreated() {
         loadAllEuPosts()
-        loadCurrencies()
         subscribeRateChange()
+        taskSubscription.add(currencyManager.loadCurrencies())
     }
 
     private fun subscribeRateChange() {
         currentRate.observeForever {
             val rateChangedValues = euGames.value?.onEach {
+
             }
             euGames.postValue(rateChangedValues)
         }
     }
 
     private fun convertValue(): Double {
-
-    }
-
-    private fun loadCurrencies() {
-        val currenciesDisposable = currencyApi.getCurrencyCountries()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()).subscribe({
-                this.currencies.postValue(it.results)
-            }, {})
-        
-        taskSubscription.add(currenciesDisposable)
+        return 0.toDouble()
     }
 
     fun updateCurrency(index: String) {
-        val currencyRateDisposable = currencyApi.getYourCurrencyRate("GBP_"+index).subscribeOn(Schedulers.io())
+        val currencyRateDisposable = currencyManager.currencyApi.getYourCurrencyRate("GBP_"+index).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()).subscribe({
                 currentRate.postValue(it.results.entries.iterator().next().value)
             }, {})

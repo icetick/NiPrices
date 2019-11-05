@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="alex.orobynskyi.niprices.presentation.store.viewModel.ListViewModel" />
+            type="alex.orobynskyi.niprices.presentation.store.viewModel.ListActivityVM" />
     </data>
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"

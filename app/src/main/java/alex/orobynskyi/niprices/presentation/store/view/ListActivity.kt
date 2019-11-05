@@ -3,7 +3,7 @@ package alex.orobynskyi.niprices.presentation.store.view
 import alex.orobynskyi.niprices.R
 import alex.orobynskyi.niprices.databinding.ActivityListBinding
 import alex.orobynskyi.niprices.presentation.base.BaseActivity
-import alex.orobynskyi.niprices.presentation.store.viewModel.ListViewModel
+import alex.orobynskyi.niprices.presentation.store.viewModel.ListActivityVM
 import android.content.Intent
 import android.net.Uri
 import android.view.View
@@ -13,8 +13,8 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_list.*
 
 
-class ListActivity : BaseActivity<ActivityListBinding, ListViewModel>() {
-    override val viewModel: ListViewModel by viewModel()
+class ListActivity : BaseActivity<ActivityListBinding, ListActivityVM>() {
+    override val viewModel: ListActivityVM by viewModel()
     override fun getLayoutID(): Int = R.layout.activity_list
     override fun beforeContentAppear() {
 
@@ -30,7 +30,7 @@ class ListActivity : BaseActivity<ActivityListBinding, ListViewModel>() {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
             startActivity(browserIntent)
         })
-        viewModel.currencies.observe(this, Observer {
+        viewModel.currencyManager.currencies.observe(this, Observer {
             if (it.isNotEmpty()) {
                 val currencyKeys: List<String> =
                     it.values.map { currency -> currency.currencyId + " - " + currency.currencyName }
@@ -44,14 +44,9 @@ class ListActivity : BaseActivity<ActivityListBinding, ListViewModel>() {
                 currency_spinner.setSelection(0, false)
                 currency_spinner.onItemSelectedListener =
                     object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(p0: AdapterView<*>?) {}
-                        override fun onItemSelected(
-                            p0: AdapterView<*>?,
-                            p1: View?,
-                            p2: Int,
-                            p3: Long
-                        ) {
-                            viewModel.updateCurrency(currencyKeys[p2].split(" - ")[0])
+                        override fun onNothingSelected(parent: AdapterView<*>?) {}
+                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            viewModel.updateCurrency(currencyKeys[position].split(" - ")[0])
                         }
                     }
             }

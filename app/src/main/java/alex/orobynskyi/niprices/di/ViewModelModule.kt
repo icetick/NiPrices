@@ -1,5 +1,5 @@
 package alex.orobynskyi.niprices.di
-import alex.orobynskyi.niprices.presentation.store.viewModel.ListViewModel
+import alex.orobynskyi.niprices.presentation.store.viewModel.ListActivityVM
 import alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,9 +17,9 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ListViewModel::class)
+    @ViewModelKey(ListActivityVM::class)
     // Bind my View Model here
-    abstract fun bindListViewModel( listViewModel: ListViewModel): ViewModel
+    abstract fun bindListViewModel(listActivityVM: ListActivityVM): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory):
