@@ -1,0 +1,72 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "C:\\projects\\NiPrices",
+      "sdkFolder": "C:\\Users\\orobynskyi\\AppData\\Local\\Android\\Sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "C:\\projects\\NiPrices\\app\\build\\intermediates",
+      "gradleModulePathName": ":app",
+      "moduleRootFolder": "C:\\projects\\NiPrices\\app",
+      "makeFile": "C:\\projects\\NiPrices\\app\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "C:\\projects\\NiPrices\\.cxx",
+      "cxxFolder": "C:\\projects\\NiPrices\\app\\.cxx",
+      "ndkFolder": "C:\\Users\\orobynskyi\\AppData\\Local\\Android\\Sdk\\ndk\\20.1.5948944",
+      "ndkVersion": "20.1.5948944",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      ""
+    ],
+    "variantName": "release",
+    "soFolder": "C:\\projects\\NiPrices\\app\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "C:\\projects\\NiPrices\\app\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARM64_V8A",
+  "abiPlatformVersion": 23,
+  "cxxBuildFolder": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a",
+  "jsonFile": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a",
+  "objFolder": "C:\\projects\\NiPrices\\app\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a",
+  "buildCommandFile": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a\\build_command.txt",
+  "buildOutputFile": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a\\build_output.txt",
+  "modelOutputFile": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\CMakeLists.txt",
+    "toolchainWrapperFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\build_generation_state.json",
+    "cacheKeyFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "C:\\projects\\NiPrices\\app\\.cxx\\cxx\\release\\arm64-v8a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a\\json_generation_record.json",
+  "compileCommandsJsonFile": "C:\\projects\\NiPrices\\app\\.cxx\\cmake\\release\\arm64-v8a\\compile_commands.json"
+}

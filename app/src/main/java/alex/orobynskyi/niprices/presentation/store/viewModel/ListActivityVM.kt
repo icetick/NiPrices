@@ -44,7 +44,7 @@ class ListActivityVM @Inject constructor(var eshopInteractor: EshopInteractor, v
     override fun onCreated() {
         loadAllEuPosts()
         subscribeRateChange()
-        taskSubscription.add(currencyManager.loadCurrencies())
+      //  taskSubscription.add(currencyManager.loadCurrencies())
     }
 
     private fun subscribeRateChange() {

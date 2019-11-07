@@ -1,7 +1,7 @@
 package alex.orobynskyi.niprices.networking
 
 import alex.orobynskyi.niprices.domain.models.currency.Currency
-import android.util.Log
+import alex.orobynskyi.niprices.domain.repository.DbRepository
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Named
 
-class CurrencyManager @Inject constructor(@Named("currencyservice") var currencyApi: CurrencyService) {
+class CurrencyManager @Inject constructor(@Named("currencyservice") var currencyApi: CurrencyService, var dbRepository: DbRepository) {
     var currencies: MutableLiveData<HashMap<String, Currency>> = MutableLiveData()
 
     fun loadCurrencies(): Disposable {
@@ -33,7 +33,7 @@ class CurrencyManager @Inject constructor(@Named("currencyservice") var currency
             currencyApi.getYourCurrencyRate(it.joinToString(","))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe({
-                    Log.e("TAG", it.results.toString())
+                    dbRepository.saveCurrencyRates(it.results)
                 }, {})
         }.subscribe()
     }
