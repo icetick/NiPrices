@@ -1,3 +1,5 @@
 # ninja log v5
-1	514	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	5cda76e0039a94d8
-516	730	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	7e9dc81da06938ec
+1	447	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	5cda76e0039a94d8
+449	645	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	7e9dc81da06938ec
+3	433	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	5cda76e0039a94d8
+434	521	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	7e9dc81da06938ec

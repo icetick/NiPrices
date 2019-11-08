@@ -17,6 +17,12 @@ class BindingRecyclerAdapter<T : ViewDataBinding, S>(
     items: List<S> = arrayListOf()
 ) : RecyclerView.Adapter<DataBindingViewHolder<T, S>>() {
 
+    var modifier: ((DataBindingViewHolder<T, S>) -> Unit)? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     var items = items
         set(value) {
             field = value
@@ -35,6 +41,7 @@ class BindingRecyclerAdapter<T : ViewDataBinding, S>(
     override fun onBindViewHolder(holder: DataBindingViewHolder<T, S>, position: Int) {
         holder.bind(BR.viewModel, items[position])
         actionListener?.let { holder.bindActionListener(BR.actionListener, it) }
+        modifier?.invoke(holder)
         setAnimation(holder.itemView, position)
     }
 

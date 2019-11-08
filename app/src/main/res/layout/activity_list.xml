@@ -6,6 +6,9 @@
         <variable
             name="viewModel"
             type="alex.orobynskyi.niprices.presentation.store.viewModel.ListActivityVM" />
+        <variable
+            name="currencyModifier"
+            type="Float" />
     </data>
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
@@ -46,12 +49,14 @@
             android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/games_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/margin_16"
             app:callbackHandler="@{viewModel}"
             app:listItems="@{viewModel.euGames}"
+            app:modifier="@{viewModel.rateModifier}"
             tools:listitem="@layout/item_game"
             app:listLayout="@{@layout/item_game}"/>
     </LinearLayout>

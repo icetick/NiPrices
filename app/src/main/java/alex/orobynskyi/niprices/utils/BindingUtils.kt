@@ -3,6 +3,7 @@ package alex.orobynskyi.niprices.utils
 import alex.orobynskyi.niprices.R
 import alex.orobynskyi.niprices.presentation.base.ActionListener
 import alex.orobynskyi.niprices.presentation.base.BindingRecyclerAdapter
+import alex.orobynskyi.niprices.presentation.base.DataBindingViewHolder
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -12,17 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-@BindingAdapter("listItems", "callbackHandler", "listLayout")
+@BindingAdapter("listItems", "callbackHandler", "listLayout", "modifier")
 fun <T> setListItems(
     recyclerView: RecyclerView,
     items: MutableLiveData<List<T>>,
     callbackHandler: ActionListener<T>,
-    layoutItem: Int
+    layoutItem: Int,
+    modifier: ((DataBindingViewHolder<ViewDataBinding, T>) -> Unit)? = null
 ) {
     items.observeForever {
         it?.let { list ->
             recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-            recyclerView.adapter = BindingRecyclerAdapter<ViewDataBinding, T>(layoutItem, callbackHandler, list)
+            recyclerView.adapter = BindingRecyclerAdapter<ViewDataBinding, T>(layoutItem, callbackHandler, list).apply { this.modifier = modifier }
         }
     }
 }

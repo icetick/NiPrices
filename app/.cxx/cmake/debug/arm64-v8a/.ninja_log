@@ -1,3 +1,5 @@
 # ninja log v5
-0	521	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	66b7c428a83410fa
-523	821	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	82ddcdf04ada7053
+1	503	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	66b7c428a83410fa
+504	744	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	82ddcdf04ada7053
+2	458	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	66b7c428a83410fa
+459	536	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	82ddcdf04ada7053

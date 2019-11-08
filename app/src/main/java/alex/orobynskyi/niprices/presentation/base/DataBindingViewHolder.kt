@@ -9,6 +9,8 @@ class DataBindingViewHolder<T : ViewDataBinding, R>(private val binding: T) : Re
         binding.notifyPropertyChanged(field)
     }
 
+    fun getBinding(): T = binding
+
     fun bindActionListener(field: Int, actionListener: ActionListener<R>) {
         binding.setVariable(field, actionListener)
         binding.notifyPropertyChanged(field)

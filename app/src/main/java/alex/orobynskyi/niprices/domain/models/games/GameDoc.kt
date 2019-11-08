@@ -50,7 +50,7 @@ data class GameDoc(
     @ColumnInfo(name="pretty_game_categories_txt") val pretty_game_categories_txt: MutableList<String>?,
     @ColumnInfo(name="price_discount_percentage_f") val price_discount_percentage_f: Double?,
     @ColumnInfo(name="price_has_discount_b") val price_has_discount_b: Boolean?,
-    @ColumnInfo(name="price_lowest_f") val price_lowest_f: Double?,
+    @ColumnInfo(name="price_lowest_f") var price_lowest_f: Double?,
     @ColumnInfo(name="price_sorting_f") val price_sorting_f: Double?,
     @ColumnInfo(name="product_code_ss") val product_code_ss: MutableList<String>?,
     @ColumnInfo(name="product_code_txt") val product_code_txt: MutableList<String>?,

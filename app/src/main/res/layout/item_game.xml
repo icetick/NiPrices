@@ -7,6 +7,9 @@
         <variable
             name="actionListener"
             type="alex.orobynskyi.niprices.presentation.base.ActionListener" />
+        <variable
+            name="rateModifier"
+            type="Float" />
         <import type="android.view.View" />
         <import type="android.text.TextUtils"/>
     </data>
@@ -91,7 +94,7 @@
                 android:layout_marginTop="@dimen/margin_16"
                 android:layout_marginEnd="@dimen/margin_16"
                 android:visibility="@{viewModel.price_lowest_f==null ? View.GONE : View.VISIBLE}"
-                android:text='@{viewModel.price_lowest_f!=null ? viewModel.price_lowest_f + "£" : ""}'
+                android:text='@{viewModel.price_lowest_f!=null ? ((rateModifier!=null) ? viewModel.price_lowest_f*rateModifier + "£" : viewModel.price_lowest_f + "£") : ""}'
                 android:textAllCaps="true"
                 android:layout_below="@id/country_img"
                 android:textColor="@color/colorAccent"

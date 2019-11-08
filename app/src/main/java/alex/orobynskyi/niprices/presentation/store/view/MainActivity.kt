@@ -4,10 +4,8 @@ import alex.orobynskyi.niprices.R
 import alex.orobynskyi.niprices.databinding.ActivityMainBinding
 import alex.orobynskyi.niprices.presentation.base.BaseActivity
 import alex.orobynskyi.niprices.presentation.store.viewModel.MainViewModel
-import alex.orobynskyi.niprices.utils.NativeWrapper
 import android.content.Intent
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -16,8 +14,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModel()
 
     override fun beforeContentAppear() {
-        Toast.makeText(this, NativeWrapper().distinct(), Toast.LENGTH_LONG).show()
-        //viewModel.loadAllEuPosts()
+        //Toast.makeText(this, NativeWrapper().distinct(), Toast.LENGTH_LONG).show()
+        viewModel.loadAllEuPosts()
     }
 
     override fun afterContentAppear() {

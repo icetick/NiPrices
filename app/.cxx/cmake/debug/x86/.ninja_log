@@ -1,11 +1,11 @@
 # ninja log v5
-1	586	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
-588	679	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
-3	445	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
-445	631	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
-2	468	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
-468	548	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
-3	473	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
-473	555	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
-3	427	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
-427	508	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
+0	1504	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
+1505	1739	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
+2	708	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
+2	86	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
+2	738	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
+738	823	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
+3	407	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
+407	482	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b
+2	430	0	CMakeFiles/native-lib.dir/src/main/cpp/ListManager.cpp.o	f7af28a3e27a7eb0
+430	517	0	../../../../build/intermediates/cmake/debug/obj/x86/libnative-lib.so	375c74e9d2ed106b

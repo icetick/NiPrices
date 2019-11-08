@@ -32,7 +32,7 @@ class CurrencyManager @Inject constructor(@Named("currencyservice") var currency
         return Observable.fromIterable(queryGroup).map {
             currencyApi.getYourCurrencyRate(it.joinToString(","))
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe({
+                .observeOn(Schedulers.io()).subscribe({
                     dbRepository.saveCurrencyRates(it.results)
                 }, {})
         }.subscribe()

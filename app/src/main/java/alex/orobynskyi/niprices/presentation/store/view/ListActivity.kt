@@ -26,6 +26,7 @@ class ListActivity : BaseActivity<ActivityListBinding, ListActivityVM>() {
             viewModel.removeSearchSubscriptions()
             false
         }
+
         viewModel.chosenGameUrl.observe(this, Observer {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
             startActivity(browserIntent)

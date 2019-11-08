@@ -1,12 +1,9 @@
 package alex.orobynskyi.niprices.utils
 
-class NativeWrapper {
-    companion object {
-        init {
-            System.loadLibrary("native-lib")
-        }
-
+object NativeWrapper {
+    init {
+        System.loadLibrary("native-lib")
     }
 
-    external fun distinct(): String
+    external fun multiply(value: Double, rate: Double): Double
 }
